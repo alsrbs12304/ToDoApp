@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 
 class TodoRepository(private val todoDao : TodoDao) {
 
-    val readAllData : LiveData<MutableList<Todo>> = todoDao.getList()
+    val getList : LiveData<MutableList<Todo>> = todoDao.getList()
 
-    suspend fun insert(todo : Todo){
+    fun insert(todo : Todo){
         todoDao.insert(todo)
     }
 }

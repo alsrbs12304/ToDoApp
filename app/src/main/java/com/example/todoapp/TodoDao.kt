@@ -5,9 +5,9 @@ import androidx.room.*
 
 @Dao
 interface TodoDao {
-    @Query("SELECT * FROM todotable")
+    @Query("SELECT * FROM todo")
     fun getList() : LiveData<MutableList<Todo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(todo: Todo)
+    fun insert(todo: Todo)
 }

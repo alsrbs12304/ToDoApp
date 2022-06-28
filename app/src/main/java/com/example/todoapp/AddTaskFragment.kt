@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.todoapp.databinding.FragmentAddTaskBinding
 import com.example.todoapp.databinding.FragmentTaskBinding
 import com.example.todoapp.decorator.OneDayDecorator
@@ -16,6 +17,9 @@ import com.michaldrabik.classicmaterialtimepicker.CmtpDialogFragment
 import com.michaldrabik.classicmaterialtimepicker.model.CmtpTime12
 import com.michaldrabik.classicmaterialtimepicker.utilities.setOnTime12PickedListener
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class AddTaskFragment : Fragment() {
@@ -61,6 +65,16 @@ class AddTaskFragment : Fragment() {
                 binding.taskTimeHour.text = time12.hour.toString()
                 binding.taskTimeMinute.text = time12.minute.toString()
                 binding.taskTimeAmpm.text = time12.pmAm.toString()
+            }
+        }
+
+
+        val newTodo = Todo("dd", "dd", false)
+
+        binding.addBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val db = TodoDatabase.getInstance(mainActivity)
+                db!!.todoDao().insert(newTodo)
             }
         }
     }
