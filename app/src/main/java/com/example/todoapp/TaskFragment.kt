@@ -24,8 +24,6 @@ class TaskFragment : Fragment() {
 
     lateinit var navController: NavController
 
-    lateinit var todoAdapter: TodoAdapter
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -48,13 +46,14 @@ class TaskFragment : Fragment() {
             navController = Navigation.findNavController(it)
             navController.navigate(R.id.action_taskFragment_to_addTaskFragment)
         }
-        todoAdapter = TodoAdapter(mainActivity)
-        binding.todoRecyclerview.adapter = todoAdapter
     }
 
     private fun initCalendar(){
         binding.calendarView.selectedDate = today()
         binding.calendarView.addDecorators(SaturdayDecorator(), SundayDecorator(), OneDayDecorator())
+    }
+    private fun initRv(){
+
     }
 
     override fun onDestroy() {

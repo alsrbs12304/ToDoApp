@@ -1,26 +1,30 @@
 package com.example.todoapp
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TodoViewModel(application: Application) : ViewModel() {
+class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val getAll : LiveData<MutableList<Todo>>
+    private val todoList : LiveData<MutableList<Todo>>
     private val repository : TodoRepository
 
     init {
-        val todoDao = TodoDatabase.getInstance(application)!!.todoDao()
+        val todoDao = AppDatabase.getDatabase(application)!!.todoDao()
         repository = TodoRepository(todoDao)
-        getAll = repository.getList
+        todoList = repository.todoList
     }
 
-    fun insert(todo : Todo){
+    fun insert(todo: Todo){
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(todo)
+        }
+    }
+
+    fun delete(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete()
         }
     }
 }

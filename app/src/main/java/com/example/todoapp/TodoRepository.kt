@@ -1,12 +1,17 @@
 package com.example.todoapp
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 
-class TodoRepository(private val todoDao : TodoDao) {
+class TodoRepository(private val todoDao: TodoDao) {
 
-    val getList : LiveData<MutableList<Todo>> = todoDao.getList()
+    val todoList : LiveData<MutableList<Todo>> = todoDao.getList()
 
-    fun insert(todo : Todo){
+    suspend fun insert(todo : Todo){
         todoDao.insert(todo)
+    }
+
+    suspend fun delete(){
+        todoDao.deleteAll()
     }
 }

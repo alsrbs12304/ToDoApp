@@ -9,5 +9,8 @@ interface TodoDao {
     fun getList() : LiveData<MutableList<Todo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(todo: Todo)
+    suspend fun insert(todo: Todo)
+
+    @Query("DELETE FROM todo")
+    suspend fun deleteAll()
 }
