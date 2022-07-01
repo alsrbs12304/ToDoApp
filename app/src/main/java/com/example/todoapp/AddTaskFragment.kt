@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.todoapp.databinding.FragmentAddTaskBinding
 import com.example.todoapp.databinding.FragmentTaskBinding
@@ -31,7 +32,9 @@ class AddTaskFragment : Fragment() {
     private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding!!
 
-    private val todoViewModel: TodoViewModel by viewModels()
+    private val todoViewModel: TodoViewModel by lazy {
+        ViewModelProvider(this, TodoViewModel.Factory(mainActivity.application))[TodoViewModel::class.java]
+    }
 
     private var year: String? = null
     private var month: String? = null
@@ -81,14 +84,6 @@ class AddTaskFragment : Fragment() {
             }
         }
 
-        // Room Test
-//        binding.addBtn.setOnClickListener {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                val db = TodoDatabase.getInstance(mainActivity)
-//                db!!.todoDao().insert(newTodo)
-//            }
-//        }
-//
 
         binding.deleteBtn.setOnClickListener {
             todoViewModel.delete()
