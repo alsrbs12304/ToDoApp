@@ -74,4 +74,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:2.4.2"
     kapt "androidx.room:room-compiler:$room_version"
+
+    // 랜덤색
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.airbnb.android:lottie:3.4.1'
 }

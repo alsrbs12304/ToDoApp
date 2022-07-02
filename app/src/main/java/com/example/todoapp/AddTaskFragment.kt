@@ -84,7 +84,6 @@ class AddTaskFragment : Fragment() {
             }
         }
 
-
         binding.deleteBtn.setOnClickListener {
             todoViewModel.delete()
         }
@@ -102,6 +101,7 @@ class AddTaskFragment : Fragment() {
 
             if (binding.taskTitle.text.isNotEmpty()) {
                 todoViewModel.insert(newTodo)
+                Toast.makeText(mainActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(mainActivity, "할 일을 입력해주세요", Toast.LENGTH_SHORT).show()
             }

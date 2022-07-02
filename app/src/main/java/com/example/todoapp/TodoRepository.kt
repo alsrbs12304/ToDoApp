@@ -7,7 +7,7 @@ class TodoRepository(application: Application) {
 
     private val todoDao = TodoDatabase.getInstance(application)!!.todoDao()
 
-    fun getAll() : LiveData<MutableList<Todo>>{
+    fun getAll() : LiveData<List<Todo>>{
         return todoDao.getList()
     }
 
@@ -17,6 +17,10 @@ class TodoRepository(application: Application) {
 
     suspend fun delete(){
         todoDao.deleteAll()
+    }
+
+    fun getTodo(year : String, month : String, day : String) : LiveData<List<Todo>> {
+        return todoDao.getTodo(year, month, day)
     }
 
     companion object {

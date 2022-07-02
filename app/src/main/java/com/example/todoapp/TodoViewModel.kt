@@ -7,8 +7,7 @@ import kotlinx.coroutines.launch
 
 class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
 
-    val todoList : LiveData<MutableList<Todo>> = repository.getAll()
-
+    val todoList : LiveData<List<Todo>> = repository.getAll()
 
     fun insert(todo: Todo){
         viewModelScope.launch(Dispatchers.IO) {
@@ -20,6 +19,10 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.delete()
         }
+    }
+
+    fun getTodo(year : String, month : String, day : String) : LiveData<List<Todo>> {
+        return repository.getTodo(year, month, day)
     }
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
