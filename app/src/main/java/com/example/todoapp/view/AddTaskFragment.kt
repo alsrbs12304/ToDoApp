@@ -1,19 +1,16 @@
-package com.example.todoapp
+package com.example.todoapp.view
 
-import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.todoapp.data.model.Todo
+import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentAddTaskBinding
-import com.example.todoapp.databinding.FragmentTaskBinding
 import com.example.todoapp.decorator.OneDayDecorator
 import com.example.todoapp.decorator.SaturdayDecorator
 import com.example.todoapp.decorator.SundayDecorator
@@ -21,10 +18,6 @@ import com.michaldrabik.classicmaterialtimepicker.CmtpDialogFragment
 import com.michaldrabik.classicmaterialtimepicker.model.CmtpTime12
 import com.michaldrabik.classicmaterialtimepicker.utilities.setOnTime12PickedListener
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.*
 
 class AddTaskFragment : Fragment() {
 

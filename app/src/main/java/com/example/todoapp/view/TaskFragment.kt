@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.view
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todoapp.R
+import com.example.todoapp.decorator.RecyclerViewDecorator
+import com.example.todoapp.data.TodoAdapter
+import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentTaskBinding
 import com.example.todoapp.decorator.OneDayDecorator
 import com.example.todoapp.decorator.SaturdayDecorator

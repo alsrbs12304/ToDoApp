@@ -77,5 +77,5 @@ dependencies {
 
     // 랜덤색
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    implementation 'com.airbnb.android:lottie:3.4.1'
+    implementation 'com.airbnb.android:lottie:3.6.1'
 }

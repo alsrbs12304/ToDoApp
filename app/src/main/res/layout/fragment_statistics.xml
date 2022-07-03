@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StatisticsFragment">
+        tools:context=".view.StatisticsFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

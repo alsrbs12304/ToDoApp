@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import com.example.todoapp.R
 import com.example.todoapp.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {

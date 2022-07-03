@@ -1,8 +1,8 @@
-package com.example.todoapp
+package com.example.todoapp.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
+import com.example.todoapp.data.model.Todo
 
 @Dao
 interface TodoDao {

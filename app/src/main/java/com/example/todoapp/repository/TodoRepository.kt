@@ -1,7 +1,9 @@
-package com.example.todoapp
+package com.example.todoapp.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.example.todoapp.data.model.Todo
+import com.example.todoapp.data.TodoDatabase
 
 class TodoRepository(application: Application) {
 

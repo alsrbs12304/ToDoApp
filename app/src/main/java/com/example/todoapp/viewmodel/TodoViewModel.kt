@@ -1,7 +1,9 @@
-package com.example.todoapp
+package com.example.todoapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.todoapp.data.model.Todo
+import com.example.todoapp.repository.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
