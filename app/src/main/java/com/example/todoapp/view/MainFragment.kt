@@ -28,8 +28,15 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+
         binding.taskCardView.setOnClickListener {
             navController.navigate(R.id.action_mainFragment_to_taskFragment)
+        }
+        binding.statisticsCardView.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_statisticsFragment)
+        }
+        binding.weatherCardView.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_weatherFragment)
         }
     }
 
