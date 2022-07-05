@@ -13,18 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.decorator.RecyclerViewDecorator
 import com.example.todoapp.data.TodoAdapter
+import com.example.todoapp.databinding.FragmentAddTaskBinding
 import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentTaskBinding
 import com.example.todoapp.decorator.OneDayDecorator
 import com.example.todoapp.decorator.SaturdayDecorator
 import com.example.todoapp.decorator.SundayDecorator
+import com.example.todoapp.view.base.BaseFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 
-class TaskFragment : Fragment() {
-
-    lateinit var mainActivity: MainActivity
-    private var _binding : FragmentTaskBinding? = null
-    private val binding get() = _binding!!
+class TaskFragment  : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) {
 
     lateinit var navController: NavController
 
@@ -39,20 +37,6 @@ class TaskFragment : Fragment() {
         ViewModelProvider(this, TodoViewModel.Factory(mainActivity.application))[TodoViewModel::class.java]
     }
     private lateinit var todoAdapter: TodoAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mainActivity = context as MainActivity
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentTaskBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -109,10 +93,5 @@ class TaskFragment : Fragment() {
                 binding.emptyList.visibility = View.INVISIBLE
             }
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

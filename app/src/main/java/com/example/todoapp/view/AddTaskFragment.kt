@@ -8,22 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.example.todoapp.R
 import com.example.todoapp.data.model.Todo
 import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentAddTaskBinding
 import com.example.todoapp.decorator.OneDayDecorator
 import com.example.todoapp.decorator.SaturdayDecorator
 import com.example.todoapp.decorator.SundayDecorator
+import com.example.todoapp.view.base.BaseFragment
 import com.michaldrabik.classicmaterialtimepicker.CmtpDialogFragment
 import com.michaldrabik.classicmaterialtimepicker.model.CmtpTime12
 import com.michaldrabik.classicmaterialtimepicker.utilities.setOnTime12PickedListener
 import com.prolificinteractive.materialcalendarview.CalendarDay
 
-class AddTaskFragment : Fragment() {
-
-    lateinit var mainActivity: MainActivity
-    private var _binding: FragmentAddTaskBinding? = null
-    private val binding get() = _binding!!
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_add_task) {
 
     private val todoViewModel: TodoViewModel by lazy {
         ViewModelProvider(this, TodoViewModel.Factory(mainActivity.application))[TodoViewModel::class.java]
@@ -36,25 +35,11 @@ class AddTaskFragment : Fragment() {
     private var minute: String? = null
     private var ampm: String? = null
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mainActivity = context as MainActivity
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
 
-        binding.calendarView.setOnDateChangedListener { widget, date, selected ->
+        binding.calendarView.setOnDateChangedListener { _, date, _ ->
             this.year = date.year.toString()
             this.month = (date.month + 1).toString()
             this.day = date.day.toString()
@@ -95,6 +80,7 @@ class AddTaskFragment : Fragment() {
             if (binding.taskTitle.text.isNotEmpty()) {
                 todoViewModel.insert(newTodo)
                 Toast.makeText(mainActivity, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).navigateUp()
             } else {
                 Toast.makeText(mainActivity, "할 일을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -113,10 +99,5 @@ class AddTaskFragment : Fragment() {
         this.day = CalendarDay.today().day.toString()
         val taskDate = this.year + ". " + this.month + ". " + this.day + "."
         binding.taskDate.text = taskDate
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
