@@ -21,6 +21,9 @@ import com.example.todoapp.decorator.SaturdayDecorator
 import com.example.todoapp.decorator.SundayDecorator
 import com.example.todoapp.view.base.BaseFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TaskFragment  : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) {
 
@@ -63,6 +66,26 @@ class TaskFragment  : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) 
                 }
             })
         }
+
+        todoAdapter.setItemCheckBoxClickListener(object : TodoAdapter.ItemCheckBoxClickListener{
+            override fun onClick(view: View, position: Int, itemId: Int) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val todo = todoViewModel.getOne(itemId)
+                    todo.isChecked = !todo.isChecked
+                    todoViewModel.update(todo)
+                }
+            }
+
+        })
+
+        todoAdapter.setItemClickListener(object : TodoAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int, itemId: Int) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val todo = todoViewModel.getOne(itemId)
+                    todoViewModel.delete(todo)
+                }
+            }
+        })
     }
 
     private fun initCalendar(){

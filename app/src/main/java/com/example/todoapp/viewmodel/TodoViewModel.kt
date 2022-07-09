@@ -17,15 +17,23 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
         }
     }
 
-    fun delete(){
+    fun delete(todo : Todo){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.delete()
+            repository.delete(todo)
+        }
+    }
+
+    fun update(todo : Todo){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.update(todo)
         }
     }
 
     fun getTodo(year : String, month : String, day : String) : LiveData<List<Todo>> {
         return repository.getTodo(year, month, day)
     }
+
+    fun getOne(id : Int) = repository.getOne(id)
 
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -12,9 +12,15 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(todo: Todo)
 
-    @Query("DELETE FROM todo")
-    suspend fun deleteAll()
+    @Delete
+    suspend fun delete(todo : Todo)
+
+    @Update
+    suspend fun update(todo: Todo)
 
     @Query("SELECT * FROM todo WHERE year = :year AND month = :month AND day = :day ORDER BY id DESC")
     fun getTodo(year : String, month : String, day : String) : LiveData<List<Todo>>
+
+    @Query("select * from todo where id = (:id)")
+    fun selectOne(id: Int): Todo
 }

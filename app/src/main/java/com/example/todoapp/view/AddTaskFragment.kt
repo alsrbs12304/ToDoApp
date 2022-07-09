@@ -62,10 +62,6 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_a
             }
         }
 
-        binding.deleteBtn.setOnClickListener {
-            todoViewModel.delete()
-        }
-
         binding.addBtn.setOnClickListener {
             val title: String = binding.taskTitle.text.toString()
             val year: String = this.year.toString()

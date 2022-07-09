@@ -17,13 +17,15 @@ class TodoRepository(application: Application) {
         todoDao.insert(todo)
     }
 
-    suspend fun delete(){
-        todoDao.deleteAll()
-    }
+    suspend fun delete(todo : Todo) = todoDao.delete(todo)
+
+    suspend fun update(todo: Todo) = todoDao.update(todo)
 
     fun getTodo(year : String, month : String, day : String) : LiveData<List<Todo>> {
         return todoDao.getTodo(year, month, day)
     }
+
+    fun getOne(id: Int) : Todo = todoDao.selectOne(id)
 
     companion object {
         private var instance: TodoRepository? = null
