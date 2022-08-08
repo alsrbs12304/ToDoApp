@@ -1,4 +1,4 @@
-package com.example.todoapp.decorator
+package com.example.todoapp.view.util
 
 import android.graphics.Color
 import com.prolificinteractive.materialcalendarview.CalendarDay

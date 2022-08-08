@@ -35,6 +35,14 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
 
     fun getOne(id : Int) = repository.getOne(id)
 
+    fun getDateData(year : Int, month : Int, day : Int) : LiveData<List<Todo>>{
+        return repository.getDateData(year, month, day).asLiveData()
+    }
+
+    fun getCheckedData(year: Int,month: Int,day: Int): LiveData<Int> {
+        return repository.getCheckedData(year, month, day)
+    }
+
     class Factory(private val application : Application) : ViewModelProvider.Factory { // factory pattern
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return TodoViewModel(TodoRepository.getInstance(application)!!) as T

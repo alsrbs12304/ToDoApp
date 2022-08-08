@@ -1,4 +1,4 @@
-package com.example.todoapp.decorator
+package com.example.todoapp.view.util
 
 import android.annotation.SuppressLint
 import android.content.Context

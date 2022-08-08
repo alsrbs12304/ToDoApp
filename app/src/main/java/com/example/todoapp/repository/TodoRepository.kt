@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.todoapp.data.model.Todo
 import com.example.todoapp.data.TodoDatabase
+import kotlinx.coroutines.flow.Flow
 
 class TodoRepository(application: Application) {
 
@@ -26,6 +27,14 @@ class TodoRepository(application: Application) {
     }
 
     fun getOne(id: Int) : Todo = todoDao.selectOne(id)
+
+    fun getDateData(year : Int, month : Int, day : Int) : Flow<List<Todo>> {
+        return todoDao.getDateData(year, month, day)
+    }
+
+    fun getCheckedData(year: Int,month: Int,day: Int): LiveData<Int> {
+        return todoDao.getCheckedData(year, month, day)
+    }
 
     companion object {
         private var instance: TodoRepository? = null

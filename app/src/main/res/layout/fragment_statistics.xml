@@ -1,17 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.StatisticsFragment">
+        android:background="@drawable/statistics_bg_gradient"
+        android:orientation="vertical"
+        tools:context=".view.todo.StatisticsFragment">
 
-        <!-- TODO: Update blank fragment layout -->
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            app:mcv_arrowColor="@color/white"
+            app:mcv_showOtherDates="defaults" />
+
         <TextView
+            android:id="@+id/clickedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020. 8. 27."
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum_square_ac_b"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"/>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </FrameLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="50dp">
+                    <TextView
+                        android:id="@+id/checkedTask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="30sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/nanum_barun_gothic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/nanum_barun_gothic"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:id="@+id/allTask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/nanum_barun_gothic"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ADA996"
+                    android:textSize="10sp"
+                    android:text="태스크 완료 됨"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp">
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressBackgroundTint="#758ea7"
+                    android:progressDrawable="@drawable/circle_progressbar"
+                    android:progressTint="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_ac_b"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_ac_b"
+                        android:text="%"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 </layout>

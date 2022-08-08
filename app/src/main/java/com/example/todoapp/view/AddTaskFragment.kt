@@ -1,11 +1,7 @@
 package com.example.todoapp.view
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -13,9 +9,9 @@ import com.example.todoapp.R
 import com.example.todoapp.data.model.Todo
 import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentAddTaskBinding
-import com.example.todoapp.decorator.OneDayDecorator
-import com.example.todoapp.decorator.SaturdayDecorator
-import com.example.todoapp.decorator.SundayDecorator
+import com.example.todoapp.view.util.OneDayDecorator
+import com.example.todoapp.view.util.SaturdayDecorator
+import com.example.todoapp.view.util.SundayDecorator
 import com.example.todoapp.view.base.BaseFragment
 import com.michaldrabik.classicmaterialtimepicker.CmtpDialogFragment
 import com.michaldrabik.classicmaterialtimepicker.model.CmtpTime12

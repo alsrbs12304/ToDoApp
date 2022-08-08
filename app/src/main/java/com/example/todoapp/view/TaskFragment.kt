@@ -1,24 +1,19 @@
 package com.example.todoapp.view
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
-import com.example.todoapp.decorator.RecyclerViewDecorator
+import com.example.todoapp.view.util.RecyclerViewDecorator
 import com.example.todoapp.data.TodoAdapter
-import com.example.todoapp.databinding.FragmentAddTaskBinding
 import com.example.todoapp.viewmodel.TodoViewModel
 import com.example.todoapp.databinding.FragmentTaskBinding
-import com.example.todoapp.decorator.OneDayDecorator
-import com.example.todoapp.decorator.SaturdayDecorator
-import com.example.todoapp.decorator.SundayDecorator
+import com.example.todoapp.view.util.OneDayDecorator
+import com.example.todoapp.view.util.SaturdayDecorator
+import com.example.todoapp.view.util.SundayDecorator
 import com.example.todoapp.view.base.BaseFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.CoroutineScope
@@ -57,14 +52,14 @@ class TaskFragment  : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) 
             this.month = (date.month+1).toString()
             this.day = date.day.toString()
 
-            todoViewModel.getTodo(year,month,day).observe(viewLifecycleOwner, {
+            todoViewModel.getTodo(year,month,day).observe(viewLifecycleOwner) {
                 todoAdapter.setData(it)
-                if(it.isEmpty()){
+                if (it.isEmpty()) {
                     binding.emptyList.visibility = View.VISIBLE
-                }else{
+                } else {
                     binding.emptyList.visibility = View.INVISIBLE
                 }
-            })
+            }
         }
 
         todoAdapter.setItemCheckBoxClickListener(object : TodoAdapter.ItemCheckBoxClickListener{
@@ -75,7 +70,6 @@ class TaskFragment  : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) 
                     todoViewModel.update(todo)
                 }
             }
-
         })
 
         todoAdapter.setItemClickListener(object : TodoAdapter.OnItemClickListener{

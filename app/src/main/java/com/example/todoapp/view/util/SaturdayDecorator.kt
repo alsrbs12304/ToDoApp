@@ -1,4 +1,4 @@
-package com.example.todoapp.decorator
+package com.example.todoapp.view.util
 
 import android.graphics.Color
 import android.text.style.ForegroundColorSpan

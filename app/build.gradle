@@ -4,7 +4,8 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
-
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 android {
     compileSdk 32
 
@@ -16,6 +17,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", properties['base_url']
+        buildConfigField "String", "API_KEY", properties['api_key']
+        buildConfigField "String", "UnitsAppidDaily", properties['UnitsAppidDaily']
     }
 
     buildTypes {
@@ -78,4 +83,11 @@ dependencies {
     // 랜덤색
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.airbnb.android:lottie:3.6.1'
+
+    // retrofit and etc.
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
 }
